@@ -9,8 +9,8 @@ if_ps_worker = (sys.argv[1] == 'psworker')
 
 if if_ps_worker:
     cmd = '%s %s/tf_cnn_benchmarks.py %s ' % (sys.executable, CURRENT_PATH, ' '.join(sys.argv[2:]))
-    worker_cmd = cmd + '--ps_hosts=localhost:7890 --worker_hosts=localhost:7891 --job_name=worker --task_index=0 &'
-    ps_cmd = 'CUDA_VISIBLE_DEVICES="" ' +  cmd + '--ps_hosts=localhost:7890 --worker_hosts=localhost:7891 --job_name=ps --task_index=0'
+    worker_cmd = cmd + '--ps_hosts=localhost:7890 --worker_hosts=localhost:7891 --job_name=worker --task_index=0'
+    ps_cmd = 'CUDA_VISIBLE_DEVICES="" ' +  cmd + '--ps_hosts=localhost:7890 --worker_hosts=localhost:7891 --job_name=ps --task_index=0 &'
     os.system(ps_cmd)
     time.sleep(5)
     os.system(worker_cmd)
