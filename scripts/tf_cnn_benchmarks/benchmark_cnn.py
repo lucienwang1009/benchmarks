@@ -706,6 +706,11 @@ def benchmark_one_step(sess,
                        benchmark_logger=None,
                        collective_graph_key=0):
   """Advance one step of benchmarking."""
+  import numba.cuda as cuda:
+  if step == 80:
+    cuda.profile_start()
+  if step == 90:
+    cuda.profile_stop()
   should_profile = profiler and 0 <= step < _NUM_STEPS_TO_PROFILE
   need_options_and_metadata = (
       should_profile or collective_graph_key > 0 or
